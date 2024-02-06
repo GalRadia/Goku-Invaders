@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Goku Invader</string>
+    <string name="right_button">Right button</string>
+    <string name="left_button">Left button</string>
+</resources>
