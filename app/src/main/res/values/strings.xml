@@ -1,5 +1,17 @@
 <resources>
-    <string name="app_name">Goku Invader</string>
+    <string name="app_name" translatable="false">Goku Invader</string>
     <string name="right_button">Right button</string>
     <string name="left_button">Left button</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="button_slow">Slow</string>
+    <string name="button_fast">Fast</string>
+    <string name="button_buttons">Buttons</string>
+    <string name="button_sensors">Sensors</string>
+    <string name="_highscores">High scores</string>
+    <string name="button_start">Start</string>
+    <string name="button_playagain">Play Again</string>
+    <string name="dialog_error">Please write your name</string>
+    <string name="dialog_continue">Continue</string>
+    <string name="dialog_message">Please enter your name:</string>
+
 </resources>

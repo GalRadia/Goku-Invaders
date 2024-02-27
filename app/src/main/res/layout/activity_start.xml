@@ -5,46 +5,79 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".UI_Controller.StartActivity">
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/start_IMG_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/start_MBTG_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:singleSelection="true"
+        android:layout_above="@id/start_MBTG_buttons"
+        android:layout_centerHorizontal="true"
+        app:checkedButton="@id/start_BTN_slow">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/start_BTN_slow"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_slow"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/start_BTN_fast"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_fast"
+
+            />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
 
     <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/toggleButton"
+        android:id="@+id/start_MBTG_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:singleSelection="true"
+        android:layout_above="@id/start_BTN_highscores"
+        android:layout_marginTop="16dp"
+        android:layout_centerInParent="true"
+        app:checkedButton="@id/start_BTN_buttons">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/start_BTN_buttons"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_buttons"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/start_BTN_sensors"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_sensors"
+
+            />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/start_BTN_highscores"
+        style="@style/Widget.Material3.Button.TonalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        app:singleSelection="true"
-        app:checkedButton="@id/button1">
-        <Button
-            android:id="@+id/button1"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Slow"
-            />
-        <Button
-            style="?attr/materialButtonOutlinedStyle"
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fast"
-
-            />
-
-    </com.google.android.material.button.MaterialButtonToggleGroup>
-
-    <Button
+        android:layout_marginTop="@dimen/margin_default"
+        android:text="@string/_highscores" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/start_BTN_start"
         style="@style/Widget.Material3.Button.TonalButton"
-        android:id="@+id/filledTonalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toggleButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Filled tonal button"
+        android:layout_below="@id/start_BTN_highscores"
+        android:text="@string/button_start"
         />
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="fast"
-        lefy
-        />
+
+
 </RelativeLayout>

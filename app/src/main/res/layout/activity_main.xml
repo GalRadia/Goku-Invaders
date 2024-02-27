@@ -19,6 +19,7 @@
         android:layout_height="@dimen/hearts_height"
         android:layout_marginStart="@dimen/margin_default"
         android:layout_marginTop="@dimen/margin_default"
+        android:layout_alignParentStart="true"
         android:orientation="horizontal">
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -46,6 +47,17 @@
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/heart" />
     </androidx.appcompat.widget.LinearLayoutCompat>
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/main_LBL_score"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/margin_default"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        tools:text="000" />
 
     <GridLayout
         android:id="@+id/main_LYO_matrix"
@@ -53,8 +65,8 @@
         android:layout_height="match_parent"
         android:layout_below="@id/main_LYO_hearts"
         android:layout_above="@id/main_FAB_left"
-        android:columnCount="3"
-        android:rowCount="7"
+        android:columnCount="5"
+        android:rowCount="9"
         android:layoutDirection="ltr">
 
      <com.google.android.material.imageview.ShapeableImageView
@@ -73,6 +85,20 @@
             />
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/main_SIV_obstacle_02"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_03"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_04"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -100,6 +126,20 @@
             android:layout_columnWeight="1"
             />
         <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_13"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_14"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/main_SIV_obstacle_20"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -115,6 +155,20 @@
             />
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/main_SIV_obstacle_22"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_23"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_24"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -142,6 +196,20 @@
             android:layout_columnWeight="1"
             />
         <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_33"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_34"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/main_SIV_obstacle_40"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -157,6 +225,20 @@
             />
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/main_SIV_obstacle_42"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_43"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_44"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -184,6 +266,20 @@
             android:layout_columnWeight="1"
             />
         <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_53"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_54"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/main_SIV_obstacle_60"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -205,8 +301,92 @@
             android:layout_columnWeight="1"
             />
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/main_SIV_player_60"
-            android:layout_row="6"
+            android:id="@+id/main_SIV_obstacle_63"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_64"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_70"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_71"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_72"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_73"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_74"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_80"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_81"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_82"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_83"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_obstacle_84"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_player_80"
+            android:layout_row="8"
             android:layout_column="0"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -214,21 +394,39 @@
             android:layout_columnWeight="1"
             />
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/main_SIV_player_61"
-            android:layout_row="6"
+            android:id="@+id/main_SIV_player_81"
+            android:layout_row="8"
             android:layout_column="1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_player_82"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_row="8"
+            android:layout_column="2"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:src="@drawable/goku_young"
             />
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/main_SIV_player_62"
+            android:id="@+id/main_SIV_player_83"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_row="6"
-            android:layout_column="2"
+            android:layout_row="8"
+            android:layout_column="3"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_SIV_player_84"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_row="8"
+            android:layout_column="4"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             />
@@ -261,5 +459,7 @@
         app:icon="@drawable/right_icon"
         app:shapeAppearance="@style/MaterialAlertDialog.Material3"
         android:contentDescription="@string/right_button"/>
+
+
 
 </RelativeLayout>

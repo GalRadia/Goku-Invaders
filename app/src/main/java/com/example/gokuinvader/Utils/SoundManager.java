@@ -8,24 +8,27 @@ import android.os.Looper;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-public class CollisionSound {
+public class SoundManager {
     private Context context;
     private Executor executor;
     private Handler handler;
     private MediaPlayer mediaPlayer;
     private int resID;
 
-    public CollisionSound(Context context, int resId) {
+
+
+    public SoundManager(Context context, int resId) {
         this.context = context;
         this.executor = Executors.newSingleThreadExecutor();
         this.handler = new Handler(Looper.getMainLooper());
         this.resID = resId;
     }
 
-    public void playSound(){
+
+    public void playSound(boolean isLooping){
         executor.execute(() -> {
             mediaPlayer = MediaPlayer.create(context, this.resID);
-            mediaPlayer.setLooping(false);
+            mediaPlayer.setLooping(isLooping);
             mediaPlayer.setVolume(1.0f,1.0f);
             mediaPlayer.start();
 

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Goku Invader</string>
+    <string name="right_button">כפתור ימינה</string>
+    <string name="left_button">כפתור שמאלה</string>
+    <string name="button_slow">איטי</string>
+    <string name="button_fast">מהיר</string>
+    <string name="button_buttons">כפתורים</string>
+    <string name="button_sensors">סנסורים</string>
+    <string name="_highscores">טבלת שיאים</string>
+    <string name="button_start">התחל</string>
+    <string name="button_playagain">שחק שוב</string>
+</resources>

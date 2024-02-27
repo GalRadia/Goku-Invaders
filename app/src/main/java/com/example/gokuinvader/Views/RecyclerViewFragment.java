@@ -3,64 +3,67 @@ package com.example.gokuinvader.Views;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SortedList;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.gokuinvader.Adapters.HighScoreAdapter;
+import com.example.gokuinvader.Interfaces.HighscoreCallbacks;
+import com.example.gokuinvader.Logic.SortedListComperator;
+import com.example.gokuinvader.Models.HighScore;
 import com.example.gokuinvader.R;
+import com.example.gokuinvader.Utils.SharedPreferencesManager;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link RecycledViewFragment#newInstance} factory method to
+ * Use the {@link RecyclerViewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RecycledViewFragment extends Fragment {
+public class RecyclerViewFragment extends Fragment {
+    SortedListComperator sortedListComperator = new SortedListComperator();
+    RecyclerView highscoreRecyclerView;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    HighscoreCallbacks highscoreCallbacks;
+    private SortedList<HighScore> highScoreList = new SortedList<>(HighScore.class, sortedListComperator);
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public RecycledViewFragment() {
+    public RecyclerViewFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment RecycledViewFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static RecycledViewFragment newInstance(String param1, String param2) {
-        RecycledViewFragment fragment = new RecycledViewFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public void setCallbacks(HighscoreCallbacks callbacks) {
+        highscoreCallbacks = callbacks;
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    }
+
+    private void initScoreList() {
+        List<HighScore> scores = SharedPreferencesManager.getInstance().getHighscoreList();
+        scores.forEach(highScore -> highScoreList.add(highScore));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recycled_view, container, false);
+        initScoreList();
+        View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
+        HighScoreAdapter highScoreAdapter = new HighScoreAdapter(highScoreList, getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        highscoreRecyclerView = view.findViewById(R.id.frg_LST_highscores);
+        highscoreRecyclerView.setLayoutManager(linearLayoutManager);
+        highscoreRecyclerView.setAdapter(highScoreAdapter);
+        highScoreAdapter.setHighscoreCallbacks((position,name) -> highscoreCallbacks.onLocationChange(position,name));
+        return view;
     }
 }

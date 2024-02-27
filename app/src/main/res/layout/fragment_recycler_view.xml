@@ -3,12 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Views.RecycledViewFragment">
-
+    tools:context=".Views.RecyclerViewFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/blah"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:text="@string/_highscores"
+        />
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/main_LST_movies"
+        android:id="@+id/frg_LST_highscores"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/horizontal_score_item"
         />
+    </LinearLayout>
 </FrameLayout>
