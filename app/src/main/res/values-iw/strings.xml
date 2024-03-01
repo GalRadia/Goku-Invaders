@@ -10,4 +10,7 @@
     <string name="_highscores">טבלת שיאים</string>
     <string name="button_start">התחל</string>
     <string name="button_playagain">שחק שוב</string>
+    <string name="dialog_error">רשום בבקשה את שמך</string>
+    <string name="dialog_continue">המשך</string>
+    <string name="dialog_message">בבקשה הכנס את שמך</string>
 </resources>

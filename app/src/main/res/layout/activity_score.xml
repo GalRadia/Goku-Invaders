@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".UI_Controller.ScoreActivity">
+    tools:context=".UI_Controller.ScoreActivity"
+    android:background="@color/splash_screen_background">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/score_IMG_background"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-         />
+<!--    <com.google.android.material.imageview.ShapeableImageView-->
+<!--        android:id="@+id/score_IMG_background"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--         />-->
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"

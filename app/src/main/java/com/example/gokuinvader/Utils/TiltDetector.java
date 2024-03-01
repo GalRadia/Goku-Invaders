@@ -39,23 +39,21 @@ public class TiltDetector {
     }
 
     private void tiltDirectionCheck(float x, float y) {
-        if (System.currentTimeMillis() - timestamp > 250) {
+        if (System.currentTimeMillis() - timestamp > 500) {
             timestamp = System.currentTimeMillis();
-            if (Math.abs(x) > Math.abs(y)) {
-                if (x < -1) {
+                if (x < -2) {
                     tiltCallbacks.tiltRight();
                 }
-                if (x > 1) {
+                else if (x > 2) {
                     tiltCallbacks.tiltLeft();
                 }
-            } else {
-                if (y < -1) {
-                    tiltCallbacks.tiltInward();
-                }
-                if (y > 1) {
+                if (y < -2) {
                     tiltCallbacks.tiltOutward();
                 }
-            }
+                else if (y > 2) {
+                    tiltCallbacks.tiltInward();
+                }
+
         }
     }
 

@@ -12,7 +12,7 @@ public class GameManager {
     private int life;
     private static final int ROWS = 9;
     private static final int COLS = 5;
-    private int currentPlayerIndex = 1;
+    private int currentPlayerIndex = 2;
     private final Obstacle_status[][] matrixStatuses;
     private int hits = 0;
     private final Random rnd = new Random();
@@ -65,13 +65,14 @@ public class GameManager {
             }
         }
 
-        int newObstacle = rnd.nextInt(COLS);
-        int kindOfObstacle;
-        if (hits == 0)
-            kindOfObstacle = rnd.nextInt(Obstacle_status.values().length - 1);
-        else
-            kindOfObstacle = rnd.nextInt(Obstacle_status.values().length);
-        matrixStatuses[0][newObstacle] = Obstacle_status.values()[kindOfObstacle];
+        int newObstaclePos = rnd.nextInt(COLS);
+        Obstacle_status kindOfObstacle = getRandomObstacle();
+//        if (hits == 0)
+//            kindOfObstacle = rnd.nextInt(Obstacle_status.values().length - 1);
+//        else
+//            kindOfObstacle = rnd.nextInt(Obstacle_status.values().length);
+        // matrixStatuses[0][newObstaclePos] = Obstacle_status.values()[kindOfObstacle];
+        matrixStatuses[0][newObstaclePos] = kindOfObstacle;
 
     }
 
@@ -115,7 +116,7 @@ public class GameManager {
                 SignalManager.getInstance().vibrate(500);
                 SignalManager.getInstance().toast("I feel good again");
                 score += 50;
-                if(hits!=0)
+                if (hits != 0)
                     hits--;
                 return Obstacle_status.HEART;
             case RAMEN:

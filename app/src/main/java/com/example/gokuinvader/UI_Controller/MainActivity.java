@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,9 +41,11 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity {
     public static final String KEY_ISFAST = "KEY_ISFAST";
     public static final String KEY_BUTTONS = "KEY_BUTTONS";
-    public  static final int FAST = 900;
-    public  static final int SLOWEST = 500;
-    public  static final int FASTEST = 1500;
+    private static final int SMALLEST = 500;
+    private static final int SLOW = 900;
+    private static final int FAST = 700;
+
+    private static final int LARGEST = 1200;
 
     private ShapeableImageView main_IMG_background;
     private ExtendedFloatingActionButton main_FAB_left;
@@ -51,18 +54,17 @@ public class MainActivity extends AppCompatActivity {
     private ShapeableImageView[] main_IMG_PlayerPos;
     private ShapeableImageView[][] main_IMG_obstacles;
     private GameManager gameManager;
-    private static long delay = SLOWEST;
-    private Timer timerObs;
+    private static long delay = SLOW;
+    private Timer timerObs = new Timer();
     private String playerName = "";
     private MaterialTextView main_LBL_score;
     private FusedLocationProviderClient fusedLocationClient;
     private TiltDetector tiltDetector;
-    private SoundManager backgroundSound;
     private SoundManager obstacleSound;
     private SoundManager ramenSound;
     private SoundManager healthSound;
     private boolean isFast;
-    private  boolean buttons;
+    private boolean buttons;
 
 
     @Override
@@ -70,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Intent previousScreen = getIntent();
-         isFast = previousScreen.getBooleanExtra(KEY_ISFAST, false);
-         buttons = previousScreen.getBooleanExtra(KEY_BUTTONS, true);
+        isFast = previousScreen.getBooleanExtra(KEY_ISFAST, false);
+        buttons = previousScreen.getBooleanExtra(KEY_BUTTONS, true);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         findViews();
         initViews(isFast, buttons);
@@ -82,14 +84,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         initTimers();
-        if(!buttons)
+        if (!buttons)
             tiltDetector.start();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if(!buttons)
+        if (!buttons)
             tiltDetector.stop();
     }
 
@@ -102,7 +104,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initTimers() {
+        Log.d("#######", "initTimers: "+delay);
+        if (timerObs == null)
+            return;
         timerObs = new Timer();
+
         timerObs.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -112,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         }, 0, delay);
+
     }
 
     private void refresh_UI() {
@@ -123,14 +130,16 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case OBSTACLE:
                 obstacleSound.playSound(false);
+                decreaseHeart();
                 break;
             case HEART:
                 healthSound.playSound(false);
+                addHeart();
                 break;
             default:
                 break;
         }
-        updateLife();
+        //updateLife();
         updateScore();
 
     }
@@ -169,11 +178,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void decreaseHeart() {
+        int hits = gameManager.getHits();
+        main_IMG_hearts[gameManager.getLife() - hits].setVisibility(View.INVISIBLE);
+        if (hits == main_IMG_hearts.length)
+            alertDialog();
+
+    }
+
+    private void addHeart() {
+        int hits = gameManager.getHits();
+        main_IMG_hearts[gameManager.getLife() - hits - 1].setVisibility(View.VISIBLE);
+    }
+
     private void updateLife() {
         int hits = gameManager.getHits();
         if (hits == main_IMG_hearts.length) {
             alertDialog();
-            // insertHighScore();
         } else {
             for (int i = 1; i <= hits; i++)
                 main_IMG_hearts[main_IMG_hearts.length - i].setVisibility(View.INVISIBLE);
@@ -190,6 +211,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void alertDialog() {
+        if (timerObs != null) {
+            timerObs.cancel();
+        }
+        timerObs = null;
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         final AlertDialog dialog = new AlertDialog.Builder(this)
@@ -222,11 +247,6 @@ public class MainActivity extends AppCompatActivity {
         });
         dialog.show();
 
-        if (timerObs != null) {
-            timerObs.cancel();
-        }
-        timerObs = null;
-
 
     }
 
@@ -247,14 +267,14 @@ public class MainActivity extends AppCompatActivity {
             main_FAB_left.setVisibility(View.INVISIBLE);
             initTiltDetector();
         }
-        if (isFast) delay = SLOWEST;
-        else delay = FAST;
+        if (isFast) delay = FAST;
+        else delay = SLOW;
     }
 
     private void initSounds() {
-        obstacleSound=new SoundManager(this,R.raw.kiblast);
-        healthSound = new SoundManager(this,R.raw.health_pickup);
-        ramenSound = new SoundManager(this,R.raw.ramen_slurp);
+        obstacleSound = new SoundManager(this, R.raw.kiblast);
+        healthSound = new SoundManager(this, R.raw.health_pickup);
+        ramenSound = new SoundManager(this, R.raw.ramen_slurp);
         gameManager = new GameManager(main_IMG_hearts.length);
     }
 
@@ -272,25 +292,46 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void tiltInward() {
-                makeGameFaster();
+                makeGameSlower();
             }
 
             @Override
             public void tiltOutward() {
-                makeGameSlower();
+                makeGameFaster();
             }
 
         });
     }
 
     private void makeGameSlower() {
-        if(delay>SLOWEST)
-            delay-=200;
+        if (delay < LARGEST) {
+            //delay += 50;
+            delay = LARGEST;
+            restartTimer();
+        }
+        //delay -= 50;
+        /*
+            delay = SLOWEST
+         */
+
     }
 
     private void makeGameFaster() {
-        if(delay<FASTEST)
-            delay+=200;
+        if (delay > SMALLEST) {
+            delay=SMALLEST;
+            //delay -=50 ;
+            restartTimer();
+        }
+        //delay += 50;
+        /*
+            delay = FASTEST
+         */
+    }
+
+    private void restartTimer() {
+        if (timerObs != null)
+            timerObs.cancel();
+        initTimers();
     }
 
     public void insertHighScore() {

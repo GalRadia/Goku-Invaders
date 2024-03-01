@@ -38,7 +38,7 @@ public class ScoreActivity extends AppCompatActivity {
             startActivity(startIntent);
             finish();
         });
-        Glide.with(this).load(R.drawable.score_background).placeholder(R.drawable.ic_launcher_foreground).centerCrop().into(score_IMG_background);
+       // Glide.with(this).load(R.drawable.score_background).placeholder(R.drawable.ic_launcher_foreground).fitCenter().into(score_IMG_background);
         recyclerViewFragment = new RecyclerViewFragment();
         recyclerViewFragment.setCallbacks((position,playerName) -> mapsFragment.ChangeLocation(position,playerName));
         mapsFragment = new MapsFragment();
@@ -48,7 +48,7 @@ public class ScoreActivity extends AppCompatActivity {
 
     private void findViews() {
         score_BTN_PlayAgain= findViewById(R.id.score_BTN_playAgain);
-        score_IMG_background = findViewById(R.id.score_IMG_background);
+        //score_IMG_background = findViewById(R.id.score_IMG_background);
         scoreFrameRcv = findViewById(R.id.score_FRAME_rcv);
         scoreFrameMap = findViewById(R.id.score_FRAME_map);
     }
